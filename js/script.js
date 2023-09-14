@@ -1,90 +1,102 @@
-let seccionHtml =
- document.getElementById('conHtml');
-let seccionCreate =
-document.getElementById('conCreate');
-let seccionCreate2=
-document.getElementById('Create2')
-
-seccionHtml.innerHTML=`<h1 id="titulo">Creando nodos con InnerHTMl</h1> 
-<p class="parrafo contenido">
-    <span class="capital">Lorem ipsum</span>
-     dolor sit amet, consectetur adipiscing elit. Nullam nec risus nibh. Phasellus ac dignissim dui. Aenean molestie, lacus ac aliquet ultricies, turpis
-</p>`;
-
-//--Creacion de nodos con create
-
-//h1
-let elemento =document.createElement('h1');
-let contenido =
-        document.createTextNode('Creando nodos con Create');
-elemento.appendChild(contenido);
-elemento.setAttribute('id','titulo')
-seccionCreate.appendChild(elemento);
-
-
-//span
-let elemento3 =document.createElement('span');
-let contenido3= document.createTextNode('Lorem Ipsum ');
-elemento3.setAttribute('class',"capital");
-elemento3.appendChild(contenido3);
-//p
-let elemento2 =document.createElement('p');
-let contenido2 =
-        document.createTextNode('dolor sit amet, consectetur adipiscing elit. Nullam nec risus nibh. Phasellus ac dignissim dui. Aenean molestie, lacus ac aliquet ultricies, turpis');
-elemento2.appendChild(elemento3);
-elemento2.appendChild(contenido3);
-elemento2.appendChild(contenido2);
-elemento2.setAttribute('class','parrafo contenido')
-
-seccionCreate.appendChild(elemento2);
-
-//section
-    //titulo
-let Seleme =document.createElement('h1');
-let Sconte =
-        document.createTextNode('Conoceme');
-Seleme.appendChild(Sconte);
-Seleme.setAttribute('id','titulo')
-seccionCreate.appendChild(Seleme);
-    //article1
-let articulo1 = document.createElement("article");
-articulo1.classList.add("articulo1");
-let contenidoArticulo1 = document.createTextNode("");
-articulo1.appendChild(contenidoArticulo1);
-//fieldset
-let fieldset = document.createElement("fieldset");
-// span
-let span = document.createElement("span");
-let contenidoSpan = document.createTextNode("Alejandro");
-span.appendChild(contenidoSpan);
-// span al fieldset
-fieldset.appendChild(span);
-// fieldset al article
-articulo1.appendChild(fieldset);
-// article a la section
-seccionCreate.appendChild(articulo1);
+let res =document.getElementById('resultados');
 
 
 
-// article2
-let articulo2 = document.createElement("article");
-articulo2.classList.add("articulo2");
-let contenidoArticulo2 = document.createTextNode("");
-articulo2.appendChild(contenidoArticulo2);
-//imagen
-var imagen = document.createElement("img");
+//Funciones tradicionales
+function mensaje(){
+        res.innerHTML+= '<br/> Soy una funcion tradicional';
+}
 
-// Establecer la ruta de la imagen en la carpeta "img"
-imagen.src = "img/user.png";
+mensaje();
 
-// imagen a article
-articulo2.appendChild(imagen);
+function calfinal(c1,c2,c3){
+      let prom =(c1+c2+c3)/3;
+      return prom;  
+}
 
-// poner  articulos en Create2
-seccionCreate2.appendChild(articulo1);
-seccionCreate2.appendChild(articulo2);
+let promedio= calfinal(8,5,10);
+res.innerHTML +='<br/>' + promedio.toFixed(1);
 
+//variable de funcion
+let votar = function(edad){
+        let msg = edad>= 18 ? 'Puedes Votar' : 'no puedes votar'; //if else condicional ternaria solo 1 linea
+        return msg;
+
+}
+ res.innerHTML += '<br/>' + votar (50);
+
+
+ let potencia = function(n,pot){
+        res.innerHTML += '<br/>' + (n**pot); //elevar a potencia
+ };
+
+ potencia(8,3);
+
+ //funciones anonimas autoinvocadas
+ // no todas las funciones son autoinvocadas
+ (function(n=10,pot=3){
+        res.innerHTML += '<br/> funcion AA:' + (n**pot); //elevar a potencia
+ })();
+
+ //Funciones de tipo flecha
+ //let ine = function edad=<{
+   //     edad>= 18 ? 'Puedes Votar' : 'no puedes votar'; //if else condicional ternaria solo 1 linea
+     //   return msg;
+
+//}
+ //res.innerHTML += '<br/ Flecha:>' + ine (50);
+
+
+
+
+ 
+ let cartilla =edad=>
+    edad>= 18 ? 'Puedes Votar' : 'no puedes votar'; 
+ 
+res.innerHTML += '<br/> Flecha:' + cartilla (16);
+
+
+//calculadora
+var nombre = prompt("Nombre:");
+        //
+        //
+//tradicional 
+function suma() {
+        let valor1 = parseFloat(document.getElementById("valor1").value);
+        let valor2 = parseFloat(document.getElementById("valor2").value);
+        let resultado = valor1 + valor2;
+        document.getElementById("resultado").textContent =nombre +" la suma de "+valor1 +" + "+ valor2 +" = "+ resultado;
+    }
     
-
-
-
+    //flecha
+    const resta = () => {
+        let valor1 = parseFloat(document.getElementById("valor1").value);
+        let valor2 = parseFloat(document.getElementById("valor2").value);
+        let resultado = valor1 - valor2;
+        document.getElementById("resultado").textContent =nombre +" la resta de "+ valor1 +" - "+ valor2 +" = "+ resultado
+    };
+    
+    //anonima autoinvocada
+    (function () {
+        document.getElementById("multiplicacion").addEventListener("click", function () {
+            let valor1 = parseFloat(document.getElementById("valor1").value);
+            let valor2 = parseFloat(document.getElementById("valor2").value);
+            let resultado = valor1 * valor2;
+            document.getElementById("resultado").textContent = nombre +" la multiplicación de "+ valor1 +" * "+ valor2 +" = "+ resultado
+        });
+    })();
+    
+    //flecha 
+    const porcentaje = () => {
+        let valor1 = parseFloat(document.getElementById("valor1").value);
+        let valor2 = parseFloat(document.getElementById("valor2").value);
+        let resultado = (valor1 / 100) * valor2;
+        document.getElementById("resultado").textContent = nombre +" el resultado de "+ valor1 +" y "+ valor2 +" = "+ resultado
+    };
+     
+    // botones
+    document.getElementById("suma").addEventListener("click", suma);
+    document.getElementById("resta").addEventListener("click", resta);
+    document.getElementById("multiplicacion").addEventListener("click", multiplicacion);
+    document.getElementById("porcentaje").addEventListener("click", porcentaje);
+    

@@ -24,7 +24,7 @@
     color: rgb(212, 152, 202);
 }
 
-/* Estilo para los artículos */
+
 .articulo1 {
     width: 50%;
     border: 1px solid #c25635;
@@ -50,8 +50,8 @@
     float: right;
 }
 .articulo2 img {
-    width: 180px; /* Ancho deseado */
-    height: 150px; /* Alto deseado */ 
+    width: 180px; 
+    height: 150px; 
 }
 .articulo1 fieldset{
     text-align: center;
